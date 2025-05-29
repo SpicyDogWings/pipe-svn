@@ -18,6 +18,13 @@ const printHomepage = () => {
 const printMenu = () => {
   console.log(colors.blue("    |  MENU "))
   console.log("    1. Listar cambios")
+  console.log("")
 };
 
-export { printHomepage, printMenu };
+const printMenuSvnStatus = () => {
+  console.log(colors.blue("    |  STATUS View "))
+  console.log("    Backspace. Regresar")
+  console.log("")
+};
+
+export { printHomepage, printMenu, printMenuSvnStatus };
