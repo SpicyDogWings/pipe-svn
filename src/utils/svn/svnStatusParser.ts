@@ -17,9 +17,6 @@ const getSvnStatus = async () => {
       if (code !== 0) {
         errorMessage += ` Código de salida: ${code}.`;
       }
-      // if (errorText !== "") {
-      //   errorMessage += ` Mensaje de error (stderr):\n${errorText}`;
-      // }
       throw new Error(errorMessage);
     }
     const outputString = new TextDecoder().decode(stdout)
@@ -32,7 +29,6 @@ const getSvnStatus = async () => {
     console.error("Fallo al obtener el estado de SVN:", error.message)
     throw error
   }
-
 };
 
 export { getSvnStatus }
