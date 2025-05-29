@@ -17,6 +17,11 @@ for await (const event of keypress()) {
       }
     } else if (event.key === "q") {
       Deno.exit();
+    } else {
+      printHomepage();
+      printMenu();
+      console.log()
+      console.log(colors.red("? para acceder al menu"))
     }
   } catch (error) {
     console.error("Algo salió mal");
