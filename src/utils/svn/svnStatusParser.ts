@@ -1,7 +1,3 @@
-import {
-  readableStreamFromReader,
-} from "https://deno.land/std@0.224.0/streams/readable_stream_from_reader.ts";
-
 const getSvnStatus = async () => {
   try {
     const command = new Deno.Command("svn", {

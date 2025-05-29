@@ -10,26 +10,6 @@ interface StatusLine {
 
 const statusLinesEnchanced: StatusLine[] = []
 
-const enchancedLines = async () => {
-  const statusLines = await getSvnStatus();
-  statusLinesEnchanced.length = 0
-  if (statusLines.length > 0) {
-    statusLines.forEach((line) => {
-      const lineEnchanced = line.split(' ').map(item => item.trim()).filter(item => item != '')
-      statusLinesEnchanced.push({ path: lineEnchanced[1], status: lineEnchanced[0] })
-    });
-  }
-  statusLinesEnchanced.forEach((line) => {
-    let statusColor
-    if (line.status === "M") {
-      statusColor = colors.green(line.status)
-    } else if (line.status === "?") {
-      statusColor = colors.white(line.status)
-    }
-    console.log(statusColor, '  ', line.path)
-  })
-}
-
 const statusView = async () => {
   console.clear()
   printMenuSvnStatus()
@@ -39,7 +19,7 @@ const statusView = async () => {
       if (event.key && ["m"].includes(event.key)) {
         console.clear()
         printMenuSvnStatus()
-        await enchancedLines()
+        await enchancedLines("M")
       } else if (event.key === "1"){
         console.clear()
         printMenuSvnStatus()
@@ -59,5 +39,38 @@ const statusView = async () => {
     }
   }
 };
+
+const enchancedLines = async (filter: string = "") => {
+  const statusLines = await getSvnStatus();
+  statusLinesEnchanced.length = 0
+  if (statusLines.length > 0) {
+    statusLines.forEach((line) => {
+      const lineEnchanced = line.split(' ').map(item => item.trim()).filter(item => item != '')
+      statusLinesEnchanced.push({ path: lineEnchanced[1], status: lineEnchanced[0] })
+    });
+  }
+  printEnchancedLines(filter)
+}
+
+const printEnchancedLines = (filter: string = "") => {
+  const filterLines: StatusLine[] = [...statusLinesEnchanced]
+  if (filter) {
+    filterLines.length = 0
+    statusLinesEnchanced.forEach((line) => {
+      if (line.status === filter) {
+        filterLines.push(line)
+      }
+    })
+  }
+  filterLines.forEach((line) => {
+    let statusColor
+    if (line.status === "M") {
+      statusColor = colors.green(line.status)
+    } else if (line.status === "?") {
+      statusColor = colors.white(line.status)
+    }
+    console.log(statusColor, '  ', line.path)
+  })
+}
 
 export { statusView };
