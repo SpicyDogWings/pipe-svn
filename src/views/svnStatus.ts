@@ -20,6 +20,10 @@ const statusView = async () => {
         console.clear()
         printMenuSvnStatus()
         await enchancedLines("M")
+      } else if (event.key && ["?"].includes(event.key)) {
+          console.clear()
+          printMenuSvnStatus()
+          await enchancedLines("?")
       } else if (event.key === "1"){
         console.clear()
         printMenuSvnStatus()
