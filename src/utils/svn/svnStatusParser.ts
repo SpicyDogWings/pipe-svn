@@ -11,7 +11,7 @@ const getSvnStatus = async () => {
     if (code !== 0 || (errorText !== "" && errorText.includes("not a working copy"))) {
       let errorMessage = `Error al ejecutar 'svn status'.`;
       if (code !== 0) {
-        errorMessage += ` Código de salida: ${code}.`;
+        errorMessage += `Código de salida: ${code}.`;
       }
       throw new Error(errorMessage);
     }
