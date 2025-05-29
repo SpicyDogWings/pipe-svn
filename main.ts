@@ -8,14 +8,12 @@ printMenu();
 for await (const event of keypress()) {
   try {
     if (event.key && ["1"].includes(event.key)) {
-      statusView()
+      await statusView()
     } else if (event.key === "q") {
       Deno.exit();
     } else {
-      printHomepage();
-      printMenu();
-      console.log()
-      console.log(colors.red("? para acceder al menu"))
+      // printHomepage();
+      // printMenu();
     }
   } catch (error) {
     console.error("Algo salió mal");

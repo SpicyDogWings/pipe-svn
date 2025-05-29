@@ -32,13 +32,17 @@ const statusView = async () => {
     try {
       if (event.key && ["m"].includes(event.key)) {
         statusView()
+      } else if (event.key === "1"){
+        await statusView()
       } else if (event.key === "q") {
         Deno.exit();
+      } else if(event.key === "escape") {
+        console.log("Precioné escape")
+        break
       } else {
-        printHomepage();
-        printMenu();
-        console.log()
-        console.log(colors.red("? para acceder al menu"))
+        console.log(event.key)
+        // console.clear()
+        // printMenuSvnStatus();
       }
     } catch (error) {
       console.error("Algo salió mal");

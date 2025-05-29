@@ -23,7 +23,9 @@ const printMenu = () => {
 
 const printMenuSvnStatus = () => {
   console.log(colors.blue("    |  STATUS View "))
-  console.log("    Backspace. Regresar")
+  console.log("    1.   Refrescar")
+  console.log("    m.   Filtrar Modificados")
+  console.log("    Esc. Regresar")
   console.log("")
 };
 
